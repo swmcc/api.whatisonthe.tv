@@ -6,28 +6,29 @@ class ApiController < ApplicationController
   before_action :api
 
   def search
-    query = params[:query]
-    render json: query.present? ? api.search(query) : {}
+    render json: process_request(:search, :query)
   end
 
   def movie
-    id = params[:id]
-    render json: id.present? ? api.movie(id) : {}
+    render json: process_request(:movie, :id)
   end
 
   def series
-    id = params[:id]
-    render json: id.present? ? api.series(id) : {}
+    render json: process_request(:series, :id)
   end
 
   def person
-    id = params[:id]
-    render json: id.present? ? api.person(id) : {}
+    render json: process_request(:person, :id)
   end
 
   private
 
   def api
     @api ||= TVDBApi.new
+  end
+
+  def process_request(api_method, param_key)
+    param_value = params[param_key]
+    param_value.present? ? api.send(api_method, param_value) : {}
   end
 end
