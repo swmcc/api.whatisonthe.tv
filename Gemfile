@@ -1,28 +1,28 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.0"
+ruby '3.0.0'
 
-gem "bootsnap", require: false
+gem 'bootsnap', require: false
 gem 'devise'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: %i[development test]
 gem 'jwt'
-gem "pg", "~> 1.1"
-gem "puma", "~> 5.0"
-gem "rails", "~> 7.0.6"
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-gem "tvdb_api"
+gem 'pg', '~> 1.1'
+gem 'puma', '~> 5.0'
+gem 'rack-cors'
+gem 'rails', '~> 7.0.6'
+gem 'tvdb_api', '0.0.3'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "rack-cors"
+gem 'rack-cors'
 group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
-  gem "spring"
+  gem 'spring'
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
 end
-

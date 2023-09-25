@@ -219,7 +219,7 @@ GEM
     stringio (3.0.8)
     thor (1.2.2)
     timeout (0.4.0)
-    tvdb_api (0.0.1)
+    tvdb_api (0.0.3)
       faraday (~> 1.0)
       json (~> 2.0)
     tzinfo (2.0.6)
@@ -247,7 +247,7 @@ DEPENDENCIES
   rails (~> 7.0.6)
   rspec-rails (~> 5.0.0)
   spring
-  tvdb_api
+  tvdb_api (= 0.0.3)
   tzinfo-data
 
 RUBY VERSION
