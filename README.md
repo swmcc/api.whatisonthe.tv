@@ -11,6 +11,19 @@ Clone the repository and bundle the required gems:
 ```bash
 git clone https://github.com/swmcc/api.whatisonthe.tv.git
 cd api.whatisonthe.tv
+```
+
+### Using Local or Remote tvdb_api Gem
+
+By default, the application uses the remote tvdb_api gem. If you wish to use a
+local version for development or testing, set the USE_TVDB_LOCAL_GEM
+environment variable.
+
+To use the local tvdb_api gem, set `USE_TVDB_LOCAL_GEM=true` in your .env file.
+
+Make sure the local path to the tvdb_api gem is correctly specified in your Gemfile.
+
+```bash
 bundle install
 ```
 
@@ -21,6 +34,6 @@ rails db:create
 rails db:migrate
 ```
 
-Create a `.env` file for your environment variables (API keys) by referring to `.env.example`.
+Amend the API_XXX enteries by referring to `.env.example`.
 
 This is an on going project.
