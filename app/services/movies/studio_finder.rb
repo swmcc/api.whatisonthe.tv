@@ -1,6 +1,7 @@
 module Movies
   class StudioFinder
     def self.find_studios(studios)
+      return '' unless studios
       studio_names = extract_studio_names(studios)
       join_studio_names(studio_names)
     end

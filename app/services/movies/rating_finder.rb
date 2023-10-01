@@ -13,6 +13,7 @@ module Movies
     private
 
     def self.find_ratings_by_country(ratings, country)
+      return '' unless ratings
       rating = ratings.find { |r| r['country'] == country }
       rating['name'] if rating
     end

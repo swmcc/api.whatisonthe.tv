@@ -29,10 +29,10 @@ class MediaInfoService
 
   def self.fetch_details_from_third_party(id)
     api = TVDBApi.new
-    puts "Fetching movie with id: #{id}"
     response = api.movie(id)
 
-    response['data'] 
+    puts response['data']
+    response['data']
   rescue => e
     Rails.logger.error "Error fetching movie from third-party API: #{e.message}"
     nil
