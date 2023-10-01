@@ -1,4 +1,4 @@
-class MediaService
+class MediaInfoService
   require 'tvdb_api'
 
   def self.find_or_fetch_by_external_id(external_id)
@@ -6,18 +6,19 @@ class MediaService
 
     unless movie
       response = fetch_details_from_third_party(external_id.split('-').last)
-      return nil unless response 
+      return nil unless response
 
       movie = Movie.create(
         external_id: external_id,
         name: response['name'],
-        synopsis: 'synopsis',
-        image_url: 'image_url',
-        status: 'status',
-        released: 'released',
-        rating: 'rating',
-        runtime: 'runtime',
-        production_company: 'production_company',
+        status: response['status']['name'],
+        poster: response['image'],
+        runtime: response['runtime'],
+        synopsis: Movies::OverviewFinder.find_english_overview(response['translations']),
+        released: Movies::ReleaseDateFinder.find_release_date(response['releases']),
+        genres: Movies::GenreFinder.find_genres(response['genres']),
+        rating: Movies::RatingFinder.find_ratings(response['contentRatings']),
+        studio: Movies::StudioFinder.find_studios(response['studios'])
       )
     end
 
@@ -28,9 +29,10 @@ class MediaService
 
   def self.fetch_details_from_third_party(id)
     api = TVDBApi.new
-    response = api.movie(id) 
+    puts "Fetching movie with id: #{id}"
+    response = api.movie(id)
 
-    JSON.parse(response)
+    response['data'] 
   rescue => e
     Rails.logger.error "Error fetching movie from third-party API: #{e.message}"
     nil

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_01_002001) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_01_081137) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -18,15 +18,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_002001) do
   create_table "movies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "external_id", null: false
     t.string "name", null: false
-    t.string "synposis"
+    t.string "synopsis"
     t.string "poster"
     t.string "status"
     t.string "released"
     t.string "rating"
     t.string "runtime"
-    t.string "production_company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "genres"
+    t.string "studio"
   end
 
   create_table "users", force: :cascade do |t|

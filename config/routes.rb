@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
 
@@ -5,4 +7,5 @@ Rails.application.routes.draw do
   get '/movie/:id', to: 'api#movie'
   get '/series/:id', to: 'api#series'
   get '/person/:id', to: 'api#person'
+  get '/media/:id', to: 'media#show'
 end
