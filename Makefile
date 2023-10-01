@@ -24,7 +24,7 @@ local.db.setup:
 	bundle exec rails db:seed
 
 local.run:
-	./bin/dev	
+	bundle exec rails s	-p 3001
 
 local.setup:
 	bundle exec rails db:create
